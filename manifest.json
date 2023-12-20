@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Outlook - Group Similar Emails",
-  "version": "1.1",
-  "description": "Simple script that consolidates messages visually that are next to each other and have identical sender and subject.",
+  "version": "1.2",
+  "description": "Simple script that consolidates messages visually that have identical content in the sender and subject (when reading pane is not enabled).",
   "host_permissions": [
     "https://outlook.live.com/*",
     "https://outlook.office.com/*",

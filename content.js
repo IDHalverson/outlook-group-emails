@@ -10,7 +10,8 @@ function consolidateMessages() {
   const toRemoves = [];
   allDivs.forEach((div, ix) => {
     let count = 1;
-    let nextSibling = allDivs[ix + 1];
+    let iteration = 1;
+    let nextMessageToCheck = allDivs[ix + iteration];
     const threadButton = div.querySelector(
       `div > div:nth-child(2) > div > div:nth-child(1) > div:nth-child(1) > button`
     );
@@ -29,42 +30,44 @@ function consolidateMessages() {
 
     let nextSender;
     let nextSubj;
-    const updateNextSiblingVars = () => {
-      if (nextSibling) {
-        const nextThreadButton = nextSibling.querySelector(
+    const updateNextMessageToCheckVars = () => {
+      if (nextMessageToCheck) {
+        const nextThreadButton = nextMessageToCheck.querySelector(
           `div > div:nth-child(2) > div > div:nth-child(1) > div:nth-child(1) > button`
         );
         const nextHasThreadButton =
           nextThreadButton && (nextThreadButton.textContent || "").length === 1; //chevron symbol
-        const nextSenderDiv = nextSibling.querySelector(
+        const nextSenderDiv = nextMessageToCheck.querySelector(
           `div > div:nth-child(2) > div > div:nth-child(1) > div:nth-child(${
             nextHasThreadButton ? 3 : 2
           }) > span`
         );
         nextSender = nextSenderDiv ? nextSenderDiv.textContent.trim() : "";
-        const nextSubjDiv = nextSibling.querySelector(
+        const nextSubjDiv = nextMessageToCheck.querySelector(
           `div > div:nth-child(2) > div > div:nth-child(2) > div > div > span`
         );
         nextSubj = nextSubjDiv ? nextSubjDiv.textContent.trim() : "";
       }
     };
-    updateNextSiblingVars();
+    updateNextMessageToCheckVars();
 
-    while (
-      sender &&
-      subj &&
-      nextSibling &&
-      nextSender &&
-      nextSubj &&
-      sender === nextSender &&
-      subj === nextSubj &&
-      count <= limit
-    ) {
-      count++;
-      const toRemove = nextSibling;
-      nextSibling = allDivs[ix + count];
-      updateNextSiblingVars();
-      toRemoves.push(toRemove);
+    while (nextMessageToCheck) {
+      iteration++;
+      if (
+        sender &&
+        subj &&
+        nextSender &&
+        nextSubj &&
+        sender === nextSender &&
+        subj === nextSubj &&
+        count <= limit
+      ) {
+        count++;
+        const toRemove = nextMessageToCheck;
+        toRemoves.push(toRemove);
+      }
+      nextMessageToCheck = allDivs[ix + iteration];
+      updateNextMessageToCheckVars();
     }
 
     if (count > 1) {
