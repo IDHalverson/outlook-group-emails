@@ -14,7 +14,7 @@ I built a very simple Chrome extension that checks the web page for "duplicate" 
 :pencil2: - It modifies the subject to show the total number of duplicates.  
 :stopwatch: - It runs the logic every 3 seconds.  
 ⏹️ - If you need to see/interact with the duplicates, turn off the extension.  
-:hammer_and_wrench: - There is a version 1.1 with minor fixes being reviewed by Google as we speak.  
+:hammer_and_wrench: - Fixes / new versions take some time to publish due to Google needing to review them. Be patient.  
 :telephone_receiver: - If you have issues, reach out to me instead of leaving a bad review :wink: :wink: :wink:  
 
 ---
