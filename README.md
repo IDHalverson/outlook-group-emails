@@ -10,7 +10,8 @@ I built a very simple Chrome extension that checks the web page for "duplicate" 
   
 ## Notes  
 :sparkles: - If it's heavily used, I can add more functionality later.  
-:information_source: - In this case, duplicate means the emails are side-by-side, and sender/subject (as shown in the list of emails) are identical.  
+:information_source: - In this case, duplicate means the content in the sender and subject columns (as shown in the list of emails) are identical.  
+⚠️ This extension only works when the reading pane is disabled (or placed at the bottom).  
 :pencil2: - It modifies the subject to show the total number of duplicates.  
 :stopwatch: - It runs the logic every 3 seconds.  
 ⏹️ - If you need to see/interact with the duplicates, turn off the extension.  
