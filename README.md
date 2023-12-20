@@ -6,9 +6,9 @@ Find it here: [View "Outlook - Group Similar Emails" in Chrome Extension Store](
 
 ---
 
-I built a very simple Chrome extension that checks the web page for "duplicate" emails, and hides them. :point_down::skin-tone-3:
-Notes:
-
+I built a very simple Chrome extension that checks the web page for "duplicate" emails, and hides them. :point_down:  
+  
+## Notes  
 :sparkles: - If it's heavily used, I can add more functionality later.  
 :information_source: - In this case, duplicate means the emails are side-by-side, and sender/subject (as shown in the list of emails) are identical.  
 :pencil2: - It modifies the subject to show the total number of duplicates.  
@@ -16,3 +16,8 @@ Notes:
 ⏹️ - If you need to see/interact with the duplicates, turn off the extension.  
 :hammer_and_wrench: - There is a version 1.1 with minor fixes being reviewed by Google as we speak.  
 :telephone_receiver: - If you have issues, reach out to me instead of leaving a bad review :wink: :wink: :wink:  
+
+---
+
+## Issues 
+Visit the Issues tab, open one, and react with a ➕ to vote for that issue.
