@@ -20,4 +20,4 @@ I built a very simple Chrome extension that checks the web page for "duplicate" 
 ---
 
 ## Issues 
-Visit the Issues tab, open one, and react with a ➕ to vote for that issue.
+Visit the Issues tab, open one, and react with a ➕ to vote for that issue to get fixed first.
