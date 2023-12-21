@@ -4,7 +4,7 @@
     <title>Toggle Settings</title>
     <script src="popup.js"></script>
   </head>
-  <body style="height: 300px; width: 300px">
+  <body style="height: 200px; width: 400px">
     It's recommended to refresh the page after changing settings.<br />
     <div>
       <label> <input type="checkbox" id="ogeEnabled" /> Enabled </label>
@@ -17,8 +17,12 @@
     </div>
     <div>
       <label>
-        <input type="checkbox" id="ogeOnlyAdjacent" /> Only group adjacent
-        emails
+        <input type="checkbox" id="ogeOnlyAdjacent" /> Only hide adjacent emails
+      </label>
+    </div>
+    <div>
+      <label>
+        <input id="ogeGroupedNumberTemplate" /> Total number template
       </label>
     </div>
   </body>

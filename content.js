@@ -7,8 +7,14 @@ function consolidateMessages() {
         enabled: true, // Default to enabled
         leaveGrayBorders: true, // Default to enabled
         onlyAdjacent: false, // Default to disabled
+        groupedNumberTemplate: "({{n}}) -",
       },
-      function ({ enabled, leaveGrayBorders, onlyAdjacent }) {
+      function ({
+        enabled,
+        leaveGrayBorders,
+        onlyAdjacent,
+        groupedNumberTemplate,
+      }) {
         if (!enabled) return;
         const limit = 5000;
         const allDivs = Array.from(
@@ -90,7 +96,10 @@ function consolidateMessages() {
 
           if (count > 1) {
             if (subj) {
-              subjDiv.textContent = `${count} - ${subj}`;
+              subjDiv.textContent = `${groupedNumberTemplate.replace(
+                "{{n}}",
+                count
+              )} ${subj}`;
             }
           }
         });

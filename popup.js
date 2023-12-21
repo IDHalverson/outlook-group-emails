@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-  var enabled = document.getElementById("ogeEnabled");
-  var leaveGrayBorders = document.getElementById("ogeLeaveGrayBorders");
-  var onlyAdjacent = document.getElementById("ogeOnlyAdjacent");
+  const enabled = document.getElementById("ogeEnabled");
+  const leaveGrayBorders = document.getElementById("ogeLeaveGrayBorders");
+  const onlyAdjacent = document.getElementById("ogeOnlyAdjacent");
+  const groupedNumberTemplate = document.getElementById(
+    "ogeGroupedNumberTemplate"
+  );
 
   // Load stored states or default to true or false
   chrome.storage.sync.get(
@@ -9,11 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
       enabled: true, // Default to enabled
       leaveGrayBorders: true, // Default to enabled
       onlyAdjacent: false, // Default to disabled
+      groupedNumberTemplate: "({{n}}) -",
     },
     function (items) {
       enabled.checked = items.enabled;
       leaveGrayBorders.checked = items.leaveGrayBorders;
       onlyAdjacent.checked = items.onlyAdjacent;
+      groupedNumberTemplate.value = items.groupedNumberTemplate;
     }
   );
 
@@ -26,5 +31,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   onlyAdjacent.addEventListener("change", function () {
     chrome.storage.sync.set({ onlyAdjacent: onlyAdjacent.checked });
+  });
+  groupedNumberTemplate.addEventListener("change", function () {
+    chrome.storage.sync.set({
+      groupedNumberTemplate: groupedNumberTemplate.value,
+    });
   });
 });
