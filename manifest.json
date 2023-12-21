@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Outlook - Group Similar Emails",
-  "version": "1.2",
+  "version": "2.0",
   "description": "Simple configurable extension that hides emails visually with duplicate sender/subject in Outlook (when reading pane is not enabled)",
   "permissions": ["storage"],
   "host_permissions": [
