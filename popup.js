@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
     "ogeGroupedNumberTemplate"
   );
   const runHowOften = document.getElementById("ogeRunHowOften");
+  const senderList = document.getElementById("ogeSenderList");
+  const subjectList = document.getElementById("ogeSubjectList");
 
   // Load stored states or default to true or false
   chrome.storage.sync.get(
@@ -15,6 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
       onlyAdjacent: false, // Default to disabled
       groupedNumberTemplate: "({{n}}) -",
       runHowOften: 2,
+      senderList: "",
+      subjectList: "",
     },
     function (items) {
       enabled.checked = items.enabled;
@@ -22,8 +26,17 @@ document.addEventListener("DOMContentLoaded", function () {
       onlyAdjacent.checked = items.onlyAdjacent;
       groupedNumberTemplate.value = items.groupedNumberTemplate;
       runHowOften.value = items.runHowOften;
+      senderList.value = items.senderList;
+      subjectList.value = items.subjectList;
     }
   );
+
+  // Finish button
+  document
+    .getElementById("finish-button")
+    .addEventListener("click", function () {
+      window.close(); // This closes the popup
+    });
 
   // Save states when checkboxes are clicked
   enabled.addEventListener("change", function () {
@@ -42,5 +55,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   runHowOften.addEventListener("change", function () {
     chrome.storage.sync.set({ runHowOften: runHowOften.value });
+  });
+  senderList.addEventListener("change", function () {
+    chrome.storage.sync.set({ senderList: senderList.value });
+  });
+  subjectList.addEventListener("change", function () {
+    chrome.storage.sync.set({ subjectList: subjectList.value });
   });
 });

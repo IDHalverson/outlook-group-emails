@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Outlook - Group Similar Emails",
   "version": "1.2",
-  "description": "Simple script that consolidates messages visually that have identical content in the sender and subject (when reading pane is not enabled).",
+  "description": "Simple configurable extension that hides emails visually with duplicate sender/subject in Outlook (when reading pane is not enabled)",
   "permissions": ["storage"],
   "host_permissions": [
     "https://outlook.live.com/*",

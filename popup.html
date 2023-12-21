@@ -3,33 +3,56 @@
   <head>
     <title>Toggle Settings</title>
     <script src="popup.js"></script>
+    <style>
+      .mt-20 {
+        margin-top: 20px;
+      }
+    </style>
   </head>
-  <body style="height: 200px; width: 400px">
+  <body style="height: 200px; width: 500px">
     It's recommended to refresh the page after changing settings.<br />
-    <div>
+    <div class="mt-20">
       <label> <input type="checkbox" id="ogeEnabled" /> Enabled </label>
     </div>
-    <div>
+    <div class="mt-20">
       <label>
         <input type="checkbox" id="ogeLeaveGrayBorders" /> Leave gray borders
         behind
       </label>
     </div>
-    <div>
+    <div class="mt-20">
       <label>
         <input type="checkbox" id="ogeOnlyAdjacent" /> Only hide adjacent emails
       </label>
     </div>
-    <div>
+    <div class="mt-20">
       <label>
         <input id="ogeGroupedNumberTemplate" /> Total number template
       </label>
     </div>
-    <div>
+    <div class="mt-20">
       <label>
         Run every
         <input id="ogeRunHowOften" type="number" style="width: 30px" /> seconds
       </label>
     </div>
+    <div class="mt-20">
+      <label>
+        Only process row if the sender includes one of
+        <input id="ogeSenderList" style="width: 100px" /> (comma-delineated,
+        supports wildcard (%) at start and/or end, case-insensitive)
+      </label>
+    </div>
+    <div class="mt-20">
+      <label>
+        Only process row if the subject includes one of
+        <input id="ogeSubjectList" style="width: 100px" /> (comma-delineated,
+        supports wildcard (%) at start and/or end, case-insensitive)
+      </label>
+    </div>
+    <div class="mt-20">
+      <button type="button" id="finish-button">Finished</button>
+    </div>
+    <div class="mt-20">&NonBreakingSpace;</div>
   </body>
 </html>

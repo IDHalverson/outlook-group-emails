@@ -8,14 +8,26 @@ function consolidateMessages() {
         leaveGrayBorders: true, // Default to enabled
         onlyAdjacent: false, // Default to disabled
         groupedNumberTemplate: "({{n}}) -",
+        senderList: "",
+        subjectList: "",
       },
       function ({
         enabled,
         leaveGrayBorders,
         onlyAdjacent,
         groupedNumberTemplate,
+        senderList,
+        subjectList,
       }) {
         if (!enabled) return;
+        const requiredSenders = senderList
+          .split(",")
+          .map((it) => it.trim().toLowerCase())
+          .filter(Boolean);
+        const requiredSubjects = subjectList
+          .split(",")
+          .map((it) => it.trim().toLowerCase())
+          .filter(Boolean);
         const limit = 5000;
         const allDivs = Array.from(
           document.querySelectorAll(
@@ -44,6 +56,7 @@ function consolidateMessages() {
           const subj = subjDiv ? subjDiv.textContent.trim() : "";
 
           let nextSender;
+          let nextSendersList;
           let nextSubj;
           const updateNextMessageToCheckVars = () => {
             if (nextMessageToCheck) {
@@ -61,6 +74,10 @@ function consolidateMessages() {
               nextSender = nextSenderDiv
                 ? nextSenderDiv.textContent.trim()
                 : "";
+              nextSendersList = nextSender
+                .split(";")
+                .map((it) => it.trim().toLowerCase())
+                .filter(Boolean);
               const nextSubjDiv = nextMessageToCheck.querySelector(
                 `div > div:nth-child(2) > div > div:nth-child(2) > div > div > span`
               );
@@ -78,7 +95,52 @@ function consolidateMessages() {
               nextSubj &&
               sender === nextSender &&
               subj === nextSubj &&
-              count <= limit
+              count <= limit &&
+              (!requiredSenders.length ||
+                nextSendersList.some((sender) =>
+                  requiredSenders.some((requiredSender) => {
+                    const isStart = requiredSender.endsWith("%");
+                    const isEnd = requiredSender.startsWith("%");
+                    if (isStart && isEnd) {
+                      const withoutPerc = requiredSender
+                        .replace(/^\%/, "")
+                        .replace(/\%$/, "");
+                      return withoutPerc && sender.includes(withoutPerc);
+                    } else if (isStart) {
+                      return sender.startsWith(
+                        requiredSender.replace(/\%$/, "")
+                      );
+                    } else if (isEnd) {
+                      return sender.endsWith(requiredSender.replace(/^\%/, ""));
+                    } else {
+                      return sender === requiredSender;
+                    }
+                  })
+                )) &&
+              (!requiredSubjects.length ||
+                requiredSubjects.some((requiredSubject) => {
+                  const isStart = requiredSubject.endsWith("%");
+                  const isEnd = requiredSubject.startsWith("%");
+                  if (isStart && isEnd) {
+                    const withoutPerc = requiredSubject
+                      .replace(/^\%/, "")
+                      .replace(/\%$/, "");
+                    return (
+                      withoutPerc &&
+                      nextSubj.toLowerCase().includes(withoutPerc)
+                    );
+                  } else if (isStart) {
+                    return nextSubj
+                      .toLowerCase()
+                      .startsWith(requiredSubject.replace(/\%$/, ""));
+                  } else if (isEnd) {
+                    return nextSubj
+                      .toLowerCase()
+                      .endsWith(requiredSubject.replace(/^\%/, ""));
+                  } else {
+                    return nextSubj.toLowerCase() === requiredSubject;
+                  }
+                }))
             ) {
               count++;
               const toRemove = leaveGrayBorders
