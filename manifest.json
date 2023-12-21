@@ -3,6 +3,7 @@
   "name": "Outlook - Group Similar Emails",
   "version": "1.2",
   "description": "Simple script that consolidates messages visually that have identical content in the sender and subject (when reading pane is not enabled).",
+  "permissions": ["storage"],
   "host_permissions": [
     "https://outlook.live.com/*",
     "https://outlook.office.com/*",
@@ -17,5 +18,13 @@
       ],
       "js": ["content.js"]
     }
-  ]
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "images/outlook-group-emails-16.jpg",
+    "48": "images/outlook-group-emails-48.jpg",
+    "128": "images/outlook-group-emails-128.jpg"
+  }
 }
