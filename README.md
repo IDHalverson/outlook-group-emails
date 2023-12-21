@@ -28,4 +28,4 @@ Visit the Issues tab, open one, and react with 👀 to vote for that issue to ge
 ## Configuration  
 Some options are available for configuration:  
   
-![configuration_screenshot](https://github.com/IDHalverson/outlook-group-emails/assets/27778472/274e0a48-f7c2-4393-a7dd-98ccf72daec9)
+![configuration_screenshot](https://github.com/IDHalverson/outlook-group-emails/assets/27778472/be967d7f-ae41-47ca-aaeb-ee72ff8c40c4)  
