@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const groupedNumberTemplate = document.getElementById(
     "ogeGroupedNumberTemplate"
   );
+  const runHowOften = document.getElementById("ogeRunHowOften");
 
   // Load stored states or default to true or false
   chrome.storage.sync.get(
@@ -13,12 +14,14 @@ document.addEventListener("DOMContentLoaded", function () {
       leaveGrayBorders: true, // Default to enabled
       onlyAdjacent: false, // Default to disabled
       groupedNumberTemplate: "({{n}}) -",
+      runHowOften: 2,
     },
     function (items) {
       enabled.checked = items.enabled;
       leaveGrayBorders.checked = items.leaveGrayBorders;
       onlyAdjacent.checked = items.onlyAdjacent;
       groupedNumberTemplate.value = items.groupedNumberTemplate;
+      runHowOften.value = items.runHowOften;
     }
   );
 
@@ -36,5 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
     chrome.storage.sync.set({
       groupedNumberTemplate: groupedNumberTemplate.value,
     });
+  });
+  runHowOften.addEventListener("change", function () {
+    chrome.storage.sync.set({ runHowOften: runHowOften.value });
   });
 });

@@ -114,7 +114,16 @@ function startInterval() {
   if (intervalId !== null) {
     clearInterval(intervalId);
   }
-  intervalId = setInterval(consolidateMessages, 3000);
+  if (chrome && chrome.runtime && chrome.runtime.id) {
+    chrome.storage.sync.get(
+      {
+        runHowOften: 2,
+      },
+      function ({ runHowOften }) {
+        intervalId = setInterval(consolidateMessages, runHowOften * 1000);
+      }
+    );
+  }
 }
 
 function stopInterval() {
